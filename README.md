@@ -4,10 +4,9 @@
 
 Case | Schedule 
 ----------|---------
-Repeat 3 times, with unbounded exponential backoff | `Schedule.exponential(100.millis) && Schedule.recurs(3)`
-Repeat infinitely, with exponential backoff. Each backoff is bounded by 5 seconds. | ```Schedule.exponential(1.second) \|\| Schedule.spaced(5.seconds)``` `Schedule.exponential(1.second) \|\| Schedule.fixed(5.seconds)`
+Repeat 3 times with unbounded exponential backoff | `Schedule.exponential(100.millis) && Schedule.recurs(3)`
+Repeat infinitely with exponential backoff [1..5] seconds | ```Schedule.exponential(1.second) \|\| Schedule.spaced(5.seconds)``` `Schedule.exponential(1.second) \|\| Schedule.fixed(5.seconds)`
 Repeat within 30 seconds, with exponentional backoff [1..5] seconds | `((Schedule.exponential(1.second) \|\| Schedule.spaced(5.seconds)) >>> Schedule.elapsed).whileOutput(_ < 30.seconds)` or `zio.repeat(Schedule.exponential(1.second) \|\| Schedule.spaced(5.seconds)).timeout(30.seconds)`
-
 
 
 ## Common mistakes
